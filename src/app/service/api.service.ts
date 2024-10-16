@@ -12,7 +12,7 @@ export class ApiService {
   constructor(private http: HttpClient) { }
   
   registrar(datos:IReqRegistro):Observable<IResRegistro>{
-    let url = `${this.urlEndPoint}/user/registro`;
+    let url = `${this.urlEndPoint}/eventos`;
     return this.http.post<IResRegistro>(url,datos)
   }
 }
