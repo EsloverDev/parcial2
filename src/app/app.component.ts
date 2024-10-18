@@ -12,6 +12,7 @@ import { IonicModule } from '@ionic/angular';
 export class AppComponent {
   title = 'eventos';
   constructor(private router:Router){}
+  
   irA(ruta: string){
     this.router.navigate([`/${ruta}`]);
   }

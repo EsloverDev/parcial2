@@ -4,6 +4,8 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { IonicModule } from '@ionic/angular';
 import { ApiService } from '../../service/api.service';
 import { IReqRegistro } from '../../models/IReqRegistro.interface';
+import { IEvento } from '../../models/IEvento.interface';
+import { IParticipante } from '../../models/IParticipante.interface';
 
 @Component({
   selector: 'app-registro',
@@ -16,6 +18,8 @@ import { IReqRegistro } from '../../models/IReqRegistro.interface';
 export class RegistroComponent  implements OnInit {
 
   frmRegistro:FormGroup;
+  eventos: IEvento[] = [];
+  participantes: IParticipante[] = [];
 
   constructor(private api:ApiService) {
     this.frmRegistro = new FormGroup({
@@ -32,6 +36,22 @@ export class RegistroComponent  implements OnInit {
     this.api.registrar(form).subscribe(datos =>{
       console.log(datos)
     })
+  }
+
+  mostrarEventos(){
+    this.api.obtenerEventos().subscribe(
+      (data: IEvento) => {
+        console.log("Eventos: ", data);
+      }
+    )
+  }
+
+  mostrarParticipantes(){
+    this.api.obtenerParticipantes().subscribe(
+      (datos: IParticipante) => {
+        console.log("Participantes: ", datos);
+      }
+    )
   }
 
 }
